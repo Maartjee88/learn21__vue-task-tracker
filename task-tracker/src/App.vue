@@ -1,30 +1,41 @@
 <template>
   <div class="container">
     <Header title="Tast Tracker" />
-    <Tasks :tasks="tasks"/>
+    <AddTask />
 
-    <a href="https://youtu.be/qZXt1Aom3Cs?t=2453">Verder kijken</a>
+    <Tasks @toggle-reminder="toggleReminder" v-on:delete-task="deleteTask" :tasks="tasks" />
   </div>
 </template>
 
 <script>
   import Header from './components/Header'
   import Tasks from './components/Tasks'
+  import AddTask from './components/AddTask'
 
   export default {
     name: "App",
     components: {
       Header,
-      Tasks
+      Tasks,
+      AddTask
     },
     data() {
       return {
         tasks: []
       }
     },
+    methods: {
+      deleteTask(id) {
+        if (confirm('Are you sure?')) {
+          this.tasks = this.tasks.filter((task) => task.id !== id)
+        }
+      },
+      toggleReminder(id) {
+        this.tasks = this.tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder} : task) /* Wait what?!  Opzoeken: ...task !*/
+      }
+    },
     created() {
-      this.tasks = [
-        {
+      this.tasks = [{
           id: 1,
           text: 'Corgi petting',
           day: ' March 19th at 11:00am',
