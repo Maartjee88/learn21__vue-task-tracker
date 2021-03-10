@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Header title="Tast Tracker" />
-    <AddTask />
+    <AddTask @add-task="addTask" />
 
     <Tasks @toggle-reminder="toggleReminder" v-on:delete-task="deleteTask" :tasks="tasks" />
   </div>
@@ -25,6 +25,9 @@
       }
     },
     methods: {
+      addTask(task) {
+        this.tasks = [...this.tasks, task]
+      },
       deleteTask(id) {
         if (confirm('Are you sure?')) {
           this.tasks = this.tasks.filter((task) => task.id !== id)
