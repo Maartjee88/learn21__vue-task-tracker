@@ -19,8 +19,8 @@
 
 <style scope>
   .fas {
-    color: orangered;
-    background: lightgrey;
+    color: crimson;
+    background: gainsboro;
     width: 1em;
     height: 1em;
   }

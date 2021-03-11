@@ -1,7 +1,7 @@
 <template>
     <header>
         <h1>{{ title }}</h1>
-        <Button @click="onClick()" text="Add Task" color="darkcyan" /> <!-- v-on is same as @-->
+        <Button @btn-click="$emit('toggle-add-task')" :text="showAddTask ? 'Close' : 'Add Task'" :color="showAddTask ? 'crimson' : 'darkcyan'" /> <!-- v-on is same as @-->
     </header>
 </template>
 
@@ -12,14 +12,10 @@
         name: 'Header',
         props: {
             title: String,
+            showAddTask: Boolean
         },
         components: {
             Button
-        },
-        methods: {
-            onClick() {
-                console.log('click');
-            }
         }
     }
 </script>

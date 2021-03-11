@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-    <Header title="Tast Tracker" />
-    <AddTask @add-task="addTask" />
-
+    <Header @toggle-add-task="toggleAddTask" :showAddTask="showAddTask" title="Tast Tracker" />
+    <div v-show="showAddTask">
+      <AddTask @add-task="addTask" />
+    </div>
     <Tasks @toggle-reminder="toggleReminder" v-on:delete-task="deleteTask" :tasks="tasks" />
   </div>
 </template>
@@ -21,7 +22,8 @@
     },
     data() {
       return {
-        tasks: []
+        tasks: [],
+        showAddTask: false
       }
     },
     methods: {
@@ -34,7 +36,13 @@
         }
       },
       toggleReminder(id) {
-        this.tasks = this.tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder} : task) /* Wait what?!  Opzoeken: ...task !*/
+        this.tasks = this.tasks.map((task) => task.id === id ? {
+          ...task,
+          reminder: !task.reminder
+        } : task) /* Wait what?!  Opzoeken: ...task !*/
+      },
+      toggleAddTask() {
+        this.showAddTask = !this.showAddTask
       }
     },
     created() {
