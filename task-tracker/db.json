@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "text": "Corgi petting",
+      "day": "March 19th at 11:00am",
+      "reminder": true
+    },
+    {
+      "id": 2,
+      "text": "Crossfit training",
+      "day": "March 19th at 5pm",
+      "reminder": true
+    },
+    {
+      "text": "Inspect corgi floof",
+      "day": "March 19th at 11:30am",
+      "reminder": true,
+      "id": 3
+    }
+  ]
+}
